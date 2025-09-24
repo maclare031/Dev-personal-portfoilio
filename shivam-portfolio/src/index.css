@@ -1,0 +1,252 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Deep Black Background - Primary */
+    --background: 0 0% 5.1%;
+    --foreground: 0 0% 94.1%;
+
+    /* Card Colors */
+    --card: 0 0% 8.2%;
+    --card-foreground: 0 0% 94.1%;
+
+    /* Popover Colors */
+    --popover: 0 0% 8.2%;
+    --popover-foreground: 0 0% 94.1%;
+
+    /* Teal Green Accent - Primary Actions */
+    --primary: 175 100% 41.2%;
+    --primary-foreground: 0 0% 5.1%;
+
+    /* Secondary Actions */
+    --secondary: 0 0% 12.9%;
+    --secondary-foreground: 0 0% 94.1%;
+
+    /* Muted Elements */
+    --muted: 0 0% 12.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    /* Warm Yellow Accent - Micro-interactions */
+    --accent: 45 100% 49.8%;
+    --accent-foreground: 0 0% 5.1%;
+
+    /* Destructive Actions */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 94.1%;
+
+    /* Borders and Inputs */
+    --border: 0 0% 18.8%;
+    --input: 0 0% 12.9%;
+    --ring: 175 100% 41.2%;
+
+    --radius: 0.75rem;
+
+    /* Custom Design Tokens */
+    --deep-black: 0 0% 5.1%;
+    --teal-accent: 175 100% 41.2%;
+    --off-white: 0 0% 94.1%;
+    --warm-yellow: 45 100% 49.8%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--deep-black)), hsl(0 0% 8.2%));
+    --gradient-card: linear-gradient(135deg, hsl(var(--card)), hsl(0 0% 10.6%));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--teal-accent)), hsl(175 100% 35%));
+    
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(var(--teal-accent) / 0.2);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.3);
+    --shadow-hover: 0 12px 40px hsl(var(--teal-accent) / 0.15);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    /* Same tokens for consistency - already dark theme optimized */
+    --background: 0 0% 5.1%;
+    --foreground: 0 0% 94.1%;
+    --card: 0 0% 8.2%;
+    --card-foreground: 0 0% 94.1%;
+    --popover: 0 0% 8.2%;
+    --popover-foreground: 0 0% 94.1%;
+    --primary: 175 100% 41.2%;
+    --primary-foreground: 0 0% 5.1%;
+    --secondary: 0 0% 12.9%;
+    --secondary-foreground: 0 0% 94.1%;
+    --muted: 0 0% 12.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 45 100% 49.8%;
+    --accent-foreground: 0 0% 5.1%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 94.1%;
+    --border: 0 0% 18.8%;
+    --input: 0 0% 12.9%;
+    --ring: 175 100% 41.2%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  /* Hero specific animations */
+  .hero-text {
+    animation: heroText 1s ease-out forwards;
+  }
+
+  .hero-subtitle {
+    animation: heroSubtitle 1s ease-out 0.3s forwards;
+    opacity: 0;
+  }
+
+  .hero-buttons {
+    animation: heroButtons 1s ease-out 0.6s forwards;
+    opacity: 0;
+  }
+
+  /* Card hover effects */
+  .project-card {
+    transition: var(--transition-smooth);
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+  }
+
+  /* Skill bar animations */
+  .skill-bar {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .skill-progress {
+    transform: translateX(-100%);
+    transition: transform 1s ease-out;
+  }
+
+  .skill-bar.animate .skill-progress {
+    transform: translateX(0);
+  }
+
+  /* Interactive elements */
+  .interactive-hover {
+    transition: var(--transition-bounce);
+  }
+
+  .interactive-hover:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px hsl(var(--teal-accent) / 0.3);
+  }
+  to {
+    box-shadow: 0 0 30px hsl(var(--teal-accent) / 0.6);
+  }
+}
+
+@keyframes heroText {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroSubtitle {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroButtons {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
